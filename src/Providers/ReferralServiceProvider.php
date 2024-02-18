@@ -3,17 +3,17 @@
 namespace Juzaweb\Referral\Providers;
 
 use Illuminate\Support\Facades\Event;
-use Juzaweb\Backend\Events\Users\RegisterSuccessful;
+use Juzaweb\Backend\Events\Users\RegisterCompleted;
 use Juzaweb\CMS\Support\ServiceProvider;
 use Juzaweb\Referral\Actions\ConfigAction;
 use Juzaweb\Referral\Actions\FrontendAction;
-use Juzaweb\Referral\Listeners\AddRefByWhenRegisterSuccess;
+use Juzaweb\Referral\Listeners\AddRefByWhenRegisterCompleted;
 
 class ReferralServiceProvider extends ServiceProvider
 {
     protected array $listen = [
-        RegisterSuccessful::class => [
-            AddRefByWhenRegisterSuccess::class,
+        RegisterCompleted::class => [
+            AddRefByWhenRegisterCompleted::class,
         ]
     ];
 

@@ -11,12 +11,12 @@
 namespace Juzaweb\Referral\Listeners;
 
 use Illuminate\Support\Facades\Cookie;
-use Juzaweb\Backend\Events\Users\RegisterSuccessful;
+use Juzaweb\Backend\Events\Users\RegisterCompleted;
 use Juzaweb\CMS\Models\User;
 
-class AddRefByWhenRegisterSuccess
+class AddRefByWhenRegisterCompleted
 {
-    public function handle(RegisterSuccessful $event): void
+    public function handle(RegisterCompleted $event): void
     {
         if (!($code = Cookie::get('ref_code'))) {
             return;
