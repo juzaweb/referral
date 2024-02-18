@@ -15,7 +15,10 @@
     "autoload": {
         "psr-4": {
             "Juzaweb\\Referral\\": "src/"
-        }
+        },
+        "files": [
+            "helpers/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
