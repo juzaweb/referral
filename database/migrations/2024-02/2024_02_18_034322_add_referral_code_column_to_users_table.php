@@ -16,6 +16,10 @@ return new class extends Migration {
             'users',
             function (Blueprint $table) {
                 $table->string('referral_code', 16)->unique()->nullable();
+                $table->foreignId('ref_by')
+                    ->nullable()
+                    ->constrained('users')
+                    ->onDelete('set null');
             }
         );
     }
@@ -30,7 +34,8 @@ return new class extends Migration {
         Schema::table(
             'users',
             function (Blueprint $table) {
-                $table->dropColumn(['referral_code']);
+                $table->dropForeign(['ref_by']);
+                $table->dropColumn(['referral_code', 'ref_by']);
             }
         );
     }

@@ -7,13 +7,13 @@ use Juzaweb\Backend\Events\Users\RegisterSuccessful;
 use Juzaweb\CMS\Support\ServiceProvider;
 use Juzaweb\Referral\Actions\ConfigAction;
 use Juzaweb\Referral\Actions\FrontendAction;
-use Juzaweb\Referral\Listeners\AddCreditWhenRegisterSuccess;
+use Juzaweb\Referral\Listeners\AddRefByWhenRegisterSuccess;
 
 class ReferralServiceProvider extends ServiceProvider
 {
     protected array $listen = [
         RegisterSuccessful::class => [
-            AddCreditWhenRegisterSuccess::class,
+            AddRefByWhenRegisterSuccess::class,
         ]
     ];
 

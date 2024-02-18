@@ -19,4 +19,9 @@ function generate_referral_code(): string
 
     return $code;
 }
+
+function add()
+{
+
+}
  
