@@ -10,11 +10,13 @@ class FrontendAction extends Action
 {
     public function handle(): void
     {
-        if (get_config('referral_enable')) {
-            $this->addAction(self::FRONTEND_INIT, [$this, 'frontendInit']);
-            $this->addAction('theme.profile.index', [$this, 'generateReferralCode']);
-            $this->addFilter('user.resouce_data', [$this, 'addReferralCodeToTheme'], 20, 2);
+        if (!get_config('referral_enable')) {
+            return;
         }
+
+        $this->addAction(self::FRONTEND_INIT, [$this, 'frontendInit']);
+        $this->addAction('theme.profile.index', [$this, 'generateReferralCode']);
+        $this->addFilter('user.resouce_data', [$this, 'addReferralCodeToTheme'], 20, 2);
     }
 
     public function frontendInit(): void
