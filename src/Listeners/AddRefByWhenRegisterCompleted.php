@@ -18,6 +18,19 @@ class AddRefByWhenRegisterCompleted
 {
     public function handle(RegisterCompleted $event): void
     {
+        if (!get_config('referral_enable')) {
+            return;
+        }
+
+        try {
+            $this->referralHandle($event);
+        } catch (\Throwable $e) {
+            report($e);
+        }
+    }
+
+    protected function referralHandle($event): void
+    {
         if (!($code = Cookie::get('ref_code'))) {
             return;
         }
@@ -30,6 +43,8 @@ class AddRefByWhenRegisterCompleted
 
         $event->user->setAttribute('ref_by', $refUser->id);
         $event->user->save();
+
+        Cookie::queue(Cookie::forget('ref_code'));
 
         if (
             get_config('referral_credit_on_register', 0)
