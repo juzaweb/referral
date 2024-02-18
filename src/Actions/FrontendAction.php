@@ -21,7 +21,7 @@ class FrontendAction extends Action
             'referral',
             [
                 'title' => __('Referral'),
-                'contents' => 'referral::frontend.profile.referral',
+                //'contents' => 'referral::frontend.profile.referral',
                 'icon' => 'fas fa-globe',
             ]
         );
@@ -34,7 +34,7 @@ class FrontendAction extends Action
         if (empty($user->referral_code)) {
             DB::transaction(
                 function () use ($user) {
-                    $user->referral_code = \generate_referral_code();
+                    $user->setAttribute('referral_code', generate_referral_code());
                     $user->save();
                 }
             );
