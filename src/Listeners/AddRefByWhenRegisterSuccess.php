@@ -30,5 +30,19 @@ class AddRefByWhenRegisterSuccess
 
         $event->user->setAttribute('ref_by', $refUser->id);
         $event->user->save();
+
+        if (
+            get_config('referral_credit_on_register', 0)
+            && get_config('referral_credit_on_register_number', 0) > 0
+            && plugin_enabled('juzaweb/user-credit')
+        ) {
+            referral_earn(
+                $refUser,
+                $event->user,
+                'credit',
+                get_config('referral_credit_on_register_number'),
+                'Referral credit on register'
+            );
+        }
     }
 }

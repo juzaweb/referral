@@ -67,7 +67,7 @@ class ConfigAction extends Action
     {
         $this->hookAction->registerConfig(
             [
-                'referral_credit_on_registed' => [
+                'referral_credit_on_register' => [
                     'type' => 'select',
                     'label' => 'Earn credit when user register successfully',
                     'form' => 'referral',
@@ -78,7 +78,7 @@ class ConfigAction extends Action
                         ],
                     ]
                 ],
-                'referral_credit_on_registed_number' => [
+                'referral_credit_on_register_number' => [
                     'type' => 'text',
                     'label' => 'Credits number',
                     'form' => 'referral',

@@ -11,6 +11,8 @@ class ReferralUserEarnHistory extends Model
     public const STATUS_PENDING = 'pending';
     public const STATUS_COMPLETED = 'completed';
 
+    public const EARN_TYPE_REGISTER = 'register';
+
     protected $table = 'referral_user_earn_histories';
 
     protected $fillable = [
