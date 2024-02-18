@@ -2,6 +2,7 @@
 
 namespace Juzaweb\Referral\Actions;
 
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Juzaweb\CMS\Abstracts\Action;
 use Juzaweb\CMS\Models\User;
@@ -29,6 +30,11 @@ class FrontendAction extends Action
                 'icon' => 'globe',
             ]
         );
+
+        // Set cookie referral code
+        if (($ref = request()?->get('ref')) && !auth()->check()) {
+            Cookie::queue('ref_code', $ref, time() + 86400, '/');
+        }
     }
 
     public function generateReferralCode(): void

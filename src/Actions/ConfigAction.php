@@ -69,7 +69,7 @@ class ConfigAction extends Action
             [
                 'referral_credit_on_registed' => [
                     'type' => 'select',
-                    'label' => 'Earn credit when user registed successfully',
+                    'label' => 'Earn credit when user register successfully',
                     'form' => 'referral',
                     'data' => [
                         'options' => [

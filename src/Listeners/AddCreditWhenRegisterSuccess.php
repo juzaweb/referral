@@ -10,9 +10,11 @@
 
 namespace Juzaweb\Referral\Listeners;
 
+use Juzaweb\Backend\Events\Users\RegisterSuccessful;
+
 class AddCreditWhenRegisterSuccess
 {
-    public function handle()
+    public function handle(RegisterSuccessful $event): void
     {
         
     }
