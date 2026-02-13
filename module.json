@@ -1,0 +1,11 @@
+{
+    "name": "Referral",
+    "alias": "referral",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Juzaweb\\Modules\\Referral\\Providers\\ReferralServiceProvider"
+    ],
+    "files": []
+}

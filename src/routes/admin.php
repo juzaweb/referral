@@ -1,12 +1,8 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Admin Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register Admin routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "admin" middleware group. Now create something great!
-|
-*/
+use Juzaweb\Modules\Referral\Http\Controllers\ReferralController;
+
+Route::admin('referrals', ReferralController::class)->only(['index', 'bulk']);
+
+Route::post('referrals/toggle-system', [ReferralController::class, 'toggleSystem'])
+    ->name('referrals.toggle-system');
