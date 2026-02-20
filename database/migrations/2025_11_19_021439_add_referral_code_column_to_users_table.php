@@ -13,14 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        if (! Schema::hasColumn('users', 'referral_code')) {
-            Schema::table('users', function (Blueprint $table) {
-                $table->decimal('amount', 20, 5)->default(0);
-                $table->string('referral_code', 50)->nullable()->after('remember_token')->unique();
-            });
-        }
-
-        Schema::table('members', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->decimal('amount', 20, 5)->default(0);
             $table->string('referral_code', 50)->nullable()->after('remember_token')->unique();
         });
@@ -35,12 +28,6 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropUnique(['referral_code']);
-            $table->dropColumn('referral_code');
-            $table->dropColumn('amount');
-        });
-
-        Schema::table('members', function (Blueprint $table) {
-            $table->dropUnique('member_referral_code_unique');
             $table->dropColumn('referral_code');
             $table->dropColumn('amount');
         });
