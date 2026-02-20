@@ -71,9 +71,9 @@ class ReferralServiceProvider extends ServiceProvider
     protected function registerConfig(): void
     {
         $this->publishes([
-            __DIR__ . '/../config/config.php' => config_path('referral.php'),
+            __DIR__ . '/../../config/referral.php' => config_path('referral.php'),
         ], 'referral-config');
-        $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'referral');
+        $this->mergeConfigFrom(__DIR__ . '/../../config/referral.php', 'referral');
     }
 
     protected function registerTranslations(): void
