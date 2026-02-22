@@ -24,11 +24,6 @@ class ReferralServiceProvider extends ServiceProvider
             LogReferralActivity::class
         );
 
-        Event::listen(
-            WebsiteCreated::class,
-            LogWebsiteReferralActivity::class
-        );
-
         $this->booted(
             function () {
                 $this->registerMenus();
@@ -41,16 +36,12 @@ class ReferralServiceProvider extends ServiceProvider
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
-        $this->loadMigrationsFrom(__DIR__ . '/../../Database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
         $this->app->register(RouteServiceProvider::class);
     }
 
     protected function registerMenus(): void
     {
-        if (File::missing(storage_path('app/installed'))) {
-            return;
-        }
-
         // Menu::make('referral-management', function () {
         //     return [
         //         'title' => __('referral::translation.refferral'),
