@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Str;
 use Juzaweb\Modules\Referral\Models\Referral;
+use Juzaweb\Modules\Referral\Models\ReferralCode;
 
 trait HasReferrals
 {
@@ -37,7 +38,11 @@ trait HasReferrals
             if ($length >= self::MAX_REFERRAL_CODE_LENGTH) {
                 break;
             }
-        } while (static::where('referral_code', $code)->exists());
+        } while (ReferralCode::where('referrer_type', $this->getMorphClass())
+            ->where('referrer_id', $this->getKey())
+            ->where('code', $code)
+            ->exists()
+        );
 
         return $code;
     }

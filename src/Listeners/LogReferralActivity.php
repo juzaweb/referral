@@ -4,6 +4,7 @@ namespace Juzaweb\Modules\Referral\Listeners;
 
 use Illuminate\Auth\Events\Registered;
 use Juzaweb\Modules\Referral\Contracts\Referralable;
+use Juzaweb\Modules\Referral\Models\ReferralCode;
 
 class LogReferralActivity
 {
@@ -26,11 +27,13 @@ class LogReferralActivity
         }
 
         try {
-            $referrer = get_class($event->user)::where('referral_code', $referralCode)->first();
+            $referrerCodeModel = ReferralCode::where('code', $referralCode)->first();
 
-            if (!$referrer) {
+            if (!$referrerCodeModel || !$referrerCodeModel->referrer) {
                 return;
             }
+
+            $referrer = $referrerCodeModel->referrer;
 
             $referrer->refer($event->user);
         } catch (\Exception $e) {
