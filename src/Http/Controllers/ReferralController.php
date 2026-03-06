@@ -39,7 +39,7 @@ class ReferralController extends AdminController
         ]);
     }
 
-    public function toggleSystem(Request $request): JsonResponse
+    public function toggleSystem(Request $request): JsonResponse|\Illuminate\Http\RedirectResponse
     {
         $enabled = (int) $request->post('enabled');
 
