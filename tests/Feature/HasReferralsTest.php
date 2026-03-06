@@ -31,21 +31,9 @@ class HasReferralsTest extends TestCase
         $user->password = 'test';
         $user->save();
 
-        try {
-            // Calling dynamically as a workaround for PHP considering it static but it relies on $this internally
-            $code = $user->generateReferralCode();
-            $this->assertIsString($code);
-            $this->assertNotEmpty($code);
-        } catch (\Error $e) {
-            // The original trait uses `$this` in a static method which causes a fatal error in PHP 8.
-            // Since we can't change the trait's signature per reviewer feedback, we'll mark the test skipped
-            // if the original code throws this expected error.
-            if (str_contains($e->getMessage(), 'Using $this when not in object context')) {
-                $this->markTestSkipped('Original code has a bug: uses $this in static method. Skipping test to avoid modifying source code.');
-            } else {
-                throw $e;
-            }
-        }
+        $code = $user->generateReferralCode();
+        $this->assertIsString($code);
+        $this->assertNotEmpty($code);
     }
 
     public function test_referrals_sent_and_received()
