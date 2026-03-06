@@ -18,7 +18,7 @@ trait HasReferrals
     /**
      * Generate a unique referral code.
      */
-    public static function generateReferralCode(): string
+    public function generateReferralCode(): string
     {
         $maxAttempts = 10;
         $attempts = 0;
